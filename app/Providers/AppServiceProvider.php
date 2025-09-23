@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Item;
 use App\Models\Maintenance;
+use App\Observers\ItemObserver;
 use App\Observers\MaintenanceObserver;
 use Illuminate\Support\ServiceProvider;
 use Filament\Support\Colors\Color;
@@ -41,5 +43,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Maintenance::observe(MaintenanceObserver::class);
+        Item::observe(ItemObserver::class);
     }
 }

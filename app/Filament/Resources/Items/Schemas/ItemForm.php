@@ -7,6 +7,7 @@ use App\Enums\StatusBarang;
 use DateTime;
 use Dom\Text;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -55,6 +56,17 @@ class ItemForm
                             ->options(StatusBarang::options())
                             ->default(StatusBarang::AVAILABLE)
                             ->required(),
+                        FileUpload::make('foto')
+                            ->label('Foto Barang')
+                            ->image()
+                            ->directory('items')
+                            ->disk('public')
+                            ->imagePreviewHeight('150')
+                            ->downloadable()
+                            ->openable()
+                            ->preserveFilenames(false) 
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg'])
+                            ->nullable(),
                     ])
                     ->columns(2)
                     ->columnSpanFull()

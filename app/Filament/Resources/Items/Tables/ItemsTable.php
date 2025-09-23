@@ -5,11 +5,13 @@ namespace App\Filament\Resources\Items\Tables;
 use App\Enums\StatusBarang;
 use App\Enums\KondisiBarang;
 use Dom\Text;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -37,6 +39,12 @@ class ItemsTable
                     ->badge()
                     ->color(fn ($state) => $state instanceof StatusBarang ? $state->getColor() : 'primary')
                     ->formatStateUsing(fn ($state) => $state instanceof StatusBarang ? $state->label() : $state),
+                ImageColumn::make('foto')
+                    ->label('Foto')
+                    ->disk('public')
+                    ->height(80)
+                    ->width(80)
+                    ->square(),
             ])
             ->filters([
                 SelectFilter::make('status')
@@ -50,6 +58,15 @@ class ItemsTable
             ->recordActions([
                 EditAction::make(),
                 DeleteAction::make(),
+            ])
+            ->actions([ 
+                Action::make('download_qr')
+                    ->label('Download QR')
+                    ->icon('heroicon-o-qr-code')
+                    ->button()
+                    ->color('success')
+                    ->url(fn ($record) => asset("storage/qrcodes/{$record->qr_code}.svg"))
+                    ->openUrlInNewTab(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

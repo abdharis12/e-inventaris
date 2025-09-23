@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('item_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');
+            $table->unsignedBigInteger('item_id')->constrained('items')->onDelete('cascade');
             $table->enum('jenis', ['created', 'updated', 'maintenance', 'repair', 'moved', 'loaned', 'returned', 'disposed'])->default('created');
             $table->string('deskripsi')->nullable();
             $table->date('tanggal');

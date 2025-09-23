@@ -37,30 +37,8 @@ class Item extends Model
         return $this->hasMany(ItemHistory::class);
     }
 
-    protected static function booted()
+    public function getQrPathAttribute(): string
     {
-        static::created(function ($item) {
-            $item->histories()->create([
-                'jenis' => 'created',
-                'deskripsi' => "Barang {$item->nama_barang} berhasil ditambahkan.",
-                'tanggal' => now(),
-            ]);
-        });
-
-        static::updated(function ($item) {
-            $item->histories()->create([
-                'jenis' => 'updated',
-                'deskripsi' => "Barang {$item->nama_barang} diperbarui.",
-                'tanggal' => now(),
-            ]);
-        });
-
-        static::deleted(function ($item) {
-            $item->histories()->create([
-                'jenis' => 'disposed',
-                'deskripsi' => "Barang {$item->nama_barang} dihapus dari inventaris.",
-                'tanggal' => now(),
-            ]);
-        });
+        return "qrcodes/{$this->qr_code}.svg";
     }
 }
