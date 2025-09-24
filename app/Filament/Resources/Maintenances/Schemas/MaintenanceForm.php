@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\Maintenances\Schemas;
 
+use App\Enums\StatusMaintenance;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class MaintenanceForm
 {
@@ -45,12 +47,8 @@ class MaintenanceForm
 
                         Select::make('status')
                             ->label('Status')
-                            ->options([
-                                'pending' => 'Menunggu',
-                                'in progress' => 'Sedang Berjalan',
-                                'completed' => 'Selesai',
-                            ])
-                            ->default('pending'),
+                            ->options(StatusMaintenance::options())
+                            ->default(StatusMaintenance::PENDING),
 
                         DatePicker::make('tanggal_service')
                             ->label('Tanggal Servis')

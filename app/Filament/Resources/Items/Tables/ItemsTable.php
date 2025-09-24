@@ -65,8 +65,9 @@ class ItemsTable
                     ->icon('heroicon-o-qr-code')
                     ->button()
                     ->color('success')
-                    ->url(fn ($record) => asset("storage/qrcodes/{$record->qr_code}.svg"))
-                    ->openUrlInNewTab(),
+                    ->url(fn ($record) => route('qr.show', $record->id))
+                    ->openUrlInNewTab()
+                    ->visible(fn () => auth()->user()?->hasRole('super_admin')),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

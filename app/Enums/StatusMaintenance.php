@@ -2,19 +2,19 @@
 
 namespace App\Enums;
 
-enum StatusBarang: string
+enum StatusMaintenance: string
 {
-    case AVAILABLE = 'available';
-    case LOANED = 'loaned';
-    case UNDER_MAINTENANCE = 'under maintenance';
+    case PENDING = 'pending';
+    case INPROGRESS = 'in progress';
+    case COMPLETED = 'completed';
     case DAMAGED = 'damaged';
 
     public function label(): string
     {
         return match ($this) {
-            self::AVAILABLE => 'Tersedia',
-            self::LOANED => 'Dipinjam',
-            self::UNDER_MAINTENANCE => 'Dalam Perawatan',
+            self::PENDING => 'Menunggu',
+            self::INPROGRESS => 'Dalam Pengerjaan',
+            self::COMPLETED => 'Selesai',
             self::DAMAGED => 'Rusak',
         };
     }
@@ -29,10 +29,10 @@ enum StatusBarang: string
     public function getColor(): string
     {
         return match ($this) {
-            self::AVAILABLE => 'success',
-            self::LOANED => 'violet',
-            self::UNDER_MAINTENANCE => 'danger',
-            self::DAMAGED => 'rose',
+            self::PENDING => 'warning',
+            self::INPROGRESS => 'violet',
+            self::COMPLETED => 'success',
+            self::DAMAGED => 'red',
         };
     }
 }
