@@ -29,8 +29,15 @@ class ItemForm
                             ->label('Kode Barang')
                             ->required()
                             ->unique(ignoreRecord: true),
-                        TextInput::make('kategori')
+                        Select::make('kategori')
                             ->label('Kategori')
+                            ->options([
+                                'Elektronik' => 'Elektronik',
+                                'Furniture' => 'Furniture',
+                                'Alat Tulis Kantor' => 'Alat Tulis Kantor',
+                                'Kendaraan' => 'Kendaraan',
+                                'Lainnya' => 'Lainnya',
+                            ])
                             ->required(),
                         TextInput::make('lokasi')
                             ->label('Lokasi')
@@ -49,6 +56,7 @@ class ItemForm
                             ->nullable(),
                         DatePicker::make('tanggal_beli')
                             ->label('Tanggal Beli')
+                            ->native(false)
                             ->required()
                             ->date(),
                         Select::make('status')

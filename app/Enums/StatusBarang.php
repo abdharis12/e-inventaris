@@ -7,6 +7,7 @@ enum StatusBarang: string
     case AVAILABLE = 'available';
     case LOANED = 'loaned';
     case UNDER_MAINTENANCE = 'under maintenance';
+    case DAMAGED = 'damaged';
 
     public function label(): string
     {
@@ -14,6 +15,7 @@ enum StatusBarang: string
             self::AVAILABLE => 'Tersedia',
             self::LOANED => 'Dipinjam',
             self::UNDER_MAINTENANCE => 'Dalam Perawatan',
+            self::DAMAGED => 'Rusak',
         };
     }
 
@@ -30,6 +32,7 @@ enum StatusBarang: string
             self::AVAILABLE => 'success',
             self::LOANED => 'violet',
             self::UNDER_MAINTENANCE => 'danger',
+            self::DAMAGED => 'red',
         };
     }
 }

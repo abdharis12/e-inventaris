@@ -9,6 +9,7 @@ use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use App\Enums\JenisService;
 
 class MaintenancesTable
 {
@@ -20,6 +21,12 @@ class MaintenancesTable
                     ->label('Barang')
                     ->sortable()
                     ->searchable(),
+
+                TextColumn::make('jenis_service')
+                    ->label('Jenis Service')
+                    ->badge()
+                    ->formatStateUsing(fn ($state) => JenisService::tryFrom($state)?->label() ?? $state)
+                    ->color(fn ($state) => JenisService::tryFrom($state)?->getColor() ?? 'primary'),
 
                 TextColumn::make('deskripsi')
                     ->label('Deskripsi')
@@ -40,6 +47,13 @@ class MaintenancesTable
                 TextColumn::make('tanggal_service')
                     ->label('Tanggal Servis')
                     ->date('d M Y'),
+
+                TextColumn::make('interval_hari')
+                    ->label('Interval (hari)'),
+
+                TextColumn::make('next_service')
+                    ->date('d M Y')
+                    ->label('Service Berikutnya'),
             ])
             ->filters([
                 SelectFilter::make('status')

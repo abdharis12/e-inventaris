@@ -23,6 +23,15 @@ class MaintenanceForm
                             ->relationship('item', 'nama_barang')
                             ->searchable()
                             ->required(),
+                        
+                        Select::make('jenis_service')
+                            ->label('Jenis Service')
+                            ->options([
+                                'service berkala' => 'Service Berkala',
+                                'service kerusakan' => 'Service Kerusakan',
+                            ])
+                            ->default('service berkala')
+                            ->required(),
 
                         Textarea::make('deskripsi')
                             ->label('Deskripsi Perawatan')
@@ -45,6 +54,14 @@ class MaintenanceForm
 
                         DatePicker::make('tanggal_service')
                             ->label('Tanggal Servis')
+                            ->date('d M Y')
+                            ->native(false)
+                            ->required(),
+                            
+                        TextInput::make('interval_hari')
+                            ->label('Interval Servis (Hari)')
+                            ->numeric()
+                            ->helperText('Contoh: 180 = 6 bulan sekali')
                             ->required(),
                     ])
                     ->columns(2)

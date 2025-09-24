@@ -16,8 +16,13 @@ return new class extends Migration
             $table->foreignId('item_id')->constrained('items')->onDelete('cascade');
             $table->string('deskripsi');
             $table->decimal('biaya', 12, 2)->nullable();
-            $table->enum('status', ['pending', 'in progress', 'completed'])->default('pending');
+            $table->enum('status', ['pending', 'in progress', 'completed', 'damaged'])->default('pending');
+            $table->enum('jenis_service', ['service berkala', 'service kerusakan'])->default('service berkala');
             $table->date('tanggal_service');
+            $table->integer('interval_hari')->nullable();
+            $table->date('next_service')->nullable(); 
+            $table->boolean('reminder_h7_sent')->default(false);
+            $table->boolean('reminder_h3_sent')->default(false);
             $table->timestamps();
         });
     }

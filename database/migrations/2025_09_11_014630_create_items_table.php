@@ -22,7 +22,8 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->string('deskripsi')->nullable();
             $table->date('tanggal_beli');
-            $table->enum('status', ['available', 'loaned', 'under maintenance'])->default('available');
+            $table->enum('status', ['available', 'loaned', 'under maintenance', 'damaged'])->default('available');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
