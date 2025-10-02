@@ -45,6 +45,10 @@ class ItemsTable
                     ->height(80)
                     ->width(80)
                     ->square(),
+                TextColumn::make('nibar')
+                    ->label('Nibar')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 SelectFilter::make('status')

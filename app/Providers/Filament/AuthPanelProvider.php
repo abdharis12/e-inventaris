@@ -29,6 +29,8 @@ class AuthPanelProvider extends PanelProvider
             ->id('auth')
             ->path('auth')
             ->login()
+            ->brandLogo(asset('img/logo_pemkab.png'))
+            ->favicon(asset('img/logo_pemkab.png'))
             ->colors([
                 'primary' => 'pink',
             ])
@@ -42,7 +44,6 @@ class AuthPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -61,6 +62,7 @@ class AuthPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->viteTheme('resources/css/filament/auth/theme.css')
             ->spa();
     }
 }

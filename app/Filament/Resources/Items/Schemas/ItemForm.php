@@ -75,6 +75,10 @@ class ItemForm
                             ->preserveFilenames(false) 
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg'])
                             ->nullable(),
+                        TextInput::make('nibar')
+                            ->label('Nibar')
+                            ->nullable()
+                            ->unique(ignoreRecord: true),
                     ])
                     ->columns(2)
                     ->columnSpanFull()
