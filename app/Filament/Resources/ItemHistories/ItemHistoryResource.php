@@ -21,7 +21,7 @@ class ItemHistoryResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $navigationLabel = 'Histories';
+    protected static ?string $navigationLabel = 'History';
 
     protected static string | UnitEnum | null $navigationGroup = 'Inventory';
 

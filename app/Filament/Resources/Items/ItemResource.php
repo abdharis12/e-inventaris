@@ -23,7 +23,7 @@ class ItemResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Produk';
 
-    protected static ?string $navigationLabel = 'Items';
+    protected static ?string $navigationLabel = 'Produk';
 
     protected static string | UnitEnum | null $navigationGroup = 'Inventory';
 

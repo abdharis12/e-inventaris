@@ -21,7 +21,7 @@ class MaintenanceResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog8Tooth;
 
-    protected static ?string $navigationLabel = 'Maintenances';
+    protected static ?string $navigationLabel = 'Perbaikan';
 
     protected static string | UnitEnum | null $navigationGroup = 'Inventory';
 

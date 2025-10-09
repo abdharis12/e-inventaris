@@ -39,7 +39,7 @@ class AuthPanelProvider extends PanelProvider
             ->resourceCreatePageRedirect('index')
             ->resourceEditPageRedirect('index')
             ->pages([
-                Dashboard::class,
+                // Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
@@ -63,6 +63,7 @@ class AuthPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->viteTheme('resources/css/filament/auth/theme.css')
-            ->spa();
+            ->spa()
+            ->globalSearch(false);
     }
 }

@@ -23,7 +23,7 @@ class LoanResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Peminjaman';
 
-    protected static ?string $navigationLabel = 'Loans';
+    protected static ?string $navigationLabel = 'Peminjaman';
 
     protected static string | UnitEnum | null $navigationGroup = 'Inventory';
 
