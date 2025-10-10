@@ -4,9 +4,11 @@ namespace App\Models;
 
 use App\Enums\KondisiBarang;
 use App\Enums\StatusBarang;
+use App\Enums\StatusItemLoan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Item extends Model
 {
@@ -14,6 +16,7 @@ class Item extends Model
 
     protected $casts = [
         'status' => StatusBarang::class,
+        'status_loan' => StatusItemLoan::class,
         'kondisi' => KondisiBarang::class,
     ];
 
@@ -35,6 +38,11 @@ class Item extends Model
     public function histories():HasMany
     {
         return $this->hasMany(ItemHistory::class);
+    }
+
+    public function vehicle():HasOne
+    {
+        return $this->hasOne(Vehicle::class);
     }
 
     public function getQrPathAttribute(): string

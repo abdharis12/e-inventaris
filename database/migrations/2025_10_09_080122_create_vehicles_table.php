@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('item_histories', function (Blueprint $table) {
+        Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('item_id')->constrained('items')->onDelete('cascade');
-            $table->enum('jenis', ['created', 'updated', 'maintenance', 'repair', 'moved', 'loaned', 'returned', 'disposed', 'overdue'])->default('created');
-            $table->string('deskripsi')->nullable();
-            $table->date('tanggal');
+            $table->string('nopol')->unique()->nullable();
+            $table->string('merk')->nullable();
+            $table->string('tipe')->nullable();
+            $table->string('warna')->nullable();
+            $table->string('tahun')->nullable();
+            $table->string('bahan_bakar')->nullable();
+            $table->string('kilometer')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('item_histories');
+        Schema::dropIfExists('vehicles');
     }
 };

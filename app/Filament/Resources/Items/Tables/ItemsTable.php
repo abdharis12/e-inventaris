@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Items\Tables;
 
 use App\Enums\StatusBarang;
 use App\Enums\KondisiBarang;
+use App\Enums\StatusItemLoan;
 use Dom\Text;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
@@ -24,7 +25,7 @@ class ItemsTable
         return $table
             ->columns([
                 TextColumn::make('nama_barang')->label('Nama')->searchable()->sortable(),
-                TextColumn::make('kode_barang')->label('Kode')->sortable(),
+                // TextColumn::make('kode_barang')->label('Kode')->sortable(),
                 TextColumn::make('kategori')->label('Kategori')->sortable(),
                 TextColumn::make('lokasi')->label('Lokasi')->sortable(),
                 TextColumn::make('kondisi')
@@ -32,13 +33,18 @@ class ItemsTable
                     ->badge()
                     ->color(fn ($state) => $state instanceof KondisiBarang ? $state->getColor() : 'primary')
                     ->formatStateUsing(fn ($state) => $state instanceof KondisiBarang ? $state->label() : $state),
-                TextColumn::make('jumlah')->label('Jumlah')->sortable(),
-                TextColumn::make('tanggal_beli')->label('Tanggal Beli')->date(),
+                // TextColumn::make('jumlah')->label('Jumlah')->sortable(),
+                // TextColumn::make('tanggal_beli')->label('Tanggal Beli')->date('d M Y')->sortable(),
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()
                     ->color(fn ($state) => $state instanceof StatusBarang ? $state->getColor() : 'primary')
                     ->formatStateUsing(fn ($state) => $state instanceof StatusBarang ? $state->label() : $state),
+                TextColumn::make('status_loan')
+                    ->label('Status Peminjaman')
+                    ->badge()
+                    ->color(fn ($state) => $state instanceof StatusItemLoan ? $state->getColor() : 'primary')
+                    ->formatStateUsing(fn ($state) => $state instanceof StatusItemLoan ? $state->label() : $state),
                 ImageColumn::make('foto')
                     ->label('Foto')
                     ->disk('public')

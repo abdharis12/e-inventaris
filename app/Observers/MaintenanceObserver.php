@@ -43,6 +43,12 @@ class MaintenanceObserver
             'tanggal' => now(),
         ]);
 
+        // Jika maintenance kembali ke inprogress, ubah item jadi UNDER_MAINTENANCE lagi
+        if ($maintenance->status === 'in progress') {
+            $maintenance->item->update([
+                'status' => StatusBarang::UNDER_MAINTENANCE,
+            ]);
+        }
         // Jika maintenance selesai, ubah item jadi available
         if ($maintenance->status === 'completed') {
             $maintenance->item->update([

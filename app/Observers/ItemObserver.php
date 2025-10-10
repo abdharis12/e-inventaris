@@ -33,6 +33,17 @@ class ItemObserver
             'deskripsi' => "Barang {$item->nama_barang} diperbarui.",
             'tanggal' => now(),
         ]);
+
+        // 🔹 Jika kategori diubah
+        if ($item->wasChanged('kategori')) {
+            $old = $item->getOriginal('kategori');
+            $new = $item->kategori;
+
+            // Kalau berubah dari Kendaraan → non-Kendaraan, hapus relasi vehicle
+            if ($old === 'Kendaraan' && $new !== 'Kendaraan' && $item->vehicle) {
+                $item->vehicle->delete();
+            }
+        }
     }
 
     public function deleted(Item $item): void
@@ -51,5 +62,10 @@ class ItemObserver
             'deskripsi' => "Barang {$item->nama_barang} dihapus dari inventaris.",
             'tanggal' => now(),
         ]);
+
+        // 🔹 Hapus relasi vehicle jika ada
+        if ($item->vehicle) {
+            $item->vehicle->delete();
+        }
     }
 }

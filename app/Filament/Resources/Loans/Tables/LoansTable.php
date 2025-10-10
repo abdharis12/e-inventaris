@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources\Loans\Tables;
 
-use Dom\Text;
+use App\Enums\StatusLoan;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -38,20 +37,18 @@ class LoansTable
 
                 BadgeColumn::make('status')
                     ->label('Status')
-                    ->colors([
-                        'warning' => 'pending',
-                        'info' => 'in progress',
-                        'success' => 'completed',
-                    ])
+                    ->badge()
+                    ->color(fn ($state) => $state instanceof StatusLoan ? $state->getColor() : 'primary')
+                    ->formatStateUsing(fn ($state) => $state instanceof StatusLoan ? $state->label() : $state)
                     ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('status')
                     ->label('Status')
                     ->options([
-                        'pending' => 'Pending',
-                        'in progress' => 'In Progress',
-                        'completed' => 'Completed',
+                        'ongoing' => 'Ongoing',
+                        'returned' => 'Returned',
+                        'overdue' => 'Overdue',
                     ]),
                 SelectFilter::make('item_id')
                     ->label('Produk')

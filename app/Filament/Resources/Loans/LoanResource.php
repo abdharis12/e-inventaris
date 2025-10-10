@@ -25,6 +25,8 @@ class LoanResource extends Resource
 
     protected static ?string $navigationLabel = 'Peminjaman';
 
+    protected static ?string $pluralLabel = 'Peminjaman';
+
     protected static string | UnitEnum | null $navigationGroup = 'Inventory';
 
     public static function form(Schema $schema): Schema

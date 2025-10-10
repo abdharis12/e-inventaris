@@ -2,18 +2,16 @@
 
 namespace App\Enums;
 
-enum StatusBarang: string
+enum StatusItemLoan: string
 {
     case AVAILABLE = 'available';
-    case UNDER_MAINTENANCE = 'under maintenance';
-    case DAMAGED = 'damaged';
+    case LOANED = 'loaned';
 
     public function label(): string
     {
         return match ($this) {
             self::AVAILABLE => 'Tersedia',
-            self::UNDER_MAINTENANCE => 'Dalam Perawatan',
-            self::DAMAGED => 'Rusak',
+            self::LOANED => 'Dipinjam',
         };
     }
 
@@ -28,8 +26,7 @@ enum StatusBarang: string
     {
         return match ($this) {
             self::AVAILABLE => 'success',
-            self::UNDER_MAINTENANCE => 'danger',
-            self::DAMAGED => 'rose',
+            self::LOANED => 'danger',
         };
     }
 }

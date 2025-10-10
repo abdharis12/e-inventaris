@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->uuid('qr_code')->unique()->nullable();
+            $table->string('nibar')->nullable();
             $table->string('nama_barang');
             $table->string('kode_barang')->unique();
             $table->string('kategori');
@@ -22,7 +23,8 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->string('deskripsi')->nullable();
             $table->date('tanggal_beli');
-            $table->enum('status', ['available', 'loaned', 'under maintenance', 'damaged'])->default('available');
+            $table->enum('status', ['available', 'under maintenance', 'damaged'])->default('available');
+            $table->enum('status_loan', ['available', 'loaned'])->default('available');
             $table->string('foto')->nullable();
             $table->timestamps();
         });

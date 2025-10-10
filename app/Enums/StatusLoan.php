@@ -2,27 +2,27 @@
 
 namespace App\Enums;
 
-enum LoanStatus: string
+enum StatusLoan: string
 {
-    case Ongoing = 'ongoing';
-    case Returned = 'returned';
-    case Overdue = 'overdue';
+    case ONGOING = 'ongoing';
+    case RETURNED = 'returned';
+    case OVERDUE = 'overdue';
 
     public function label(): string
     {
         return match ($this) {
-            self::Ongoing => 'Ongoing',
-            self::Returned => 'Returned',
-            self::Overdue => 'Overdue',
+            self::ONGOING => 'Sedang Dipinjam',
+            self::RETURNED => 'Dikembalikan',
+            self::OVERDUE => 'Terlambat',
         };
     }
 
     public function getColor(): string
     {
         return match ($this) {
-            self::Ongoing => 'warning',
-            self::Returned => 'success',
-            self::Overdue => 'danger',
+            self::ONGOING => 'warning',
+            self::RETURNED => 'success',
+            self::OVERDUE => 'danger',
         };
     }
 

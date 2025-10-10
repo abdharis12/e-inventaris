@@ -39,9 +39,9 @@ class LoanForm
                         Select::make('status')
                             ->label('Status')
                             ->options([
-                                'ongoing' => 'Ongoing',
-                                'returned' => 'Returned',
-                                'overdue' => 'Overdue',
+                                'ongoing' => 'Sedang Dipinjam',
+                                'returned' => 'Dikembalikan',
+                                'overdue' => 'Terlambat',
                             ])
                             ->default('ongoing')
                             ->required(),

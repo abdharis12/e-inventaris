@@ -12,6 +12,7 @@ enum JenisHistory: string
     case LOANED = 'loaned';
     case RETURNED = 'returned';
     case DISPOSED = 'disposed';
+    case OVERDUE = 'overdue';
 
     public static function options(): array
     {
@@ -31,6 +32,7 @@ enum JenisHistory: string
             self::LOANED => 'Dipinjam',
             self::RETURNED => 'Dikembalikan',
             self::DISPOSED => 'Dihapus',
+            self::OVERDUE => 'Terlambat',
         };
     }
 
@@ -45,6 +47,7 @@ enum JenisHistory: string
             self::LOANED => 'violet',
             self::RETURNED => 'cyan',
             self::DISPOSED => 'danger',
+            self::OVERDUE => 'red',
         };
     }
 }
