@@ -77,6 +77,12 @@ cp .env.example .env
 php artisan key:generate
 
 # 6. Konfigurasi database di file .env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=e_inventaris
+DB_USERNAME=root
+DB_PASSWORD=
 
 # 7. Jalankan migrasi dan seeder
 php artisan migrate --seed
