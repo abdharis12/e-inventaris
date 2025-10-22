@@ -61,10 +61,10 @@ Pastikan environment kamu memenuhi spesifikasi berikut:
 ### Langkah Instalasi
 ```bash
 # 1. Clone repository
-git clone https://github.com/username/nama-proyek.git
+git clone https://github.com/abdharis12/e-inventaris.git
 
 # 2. Masuk ke folder proyek
-cd nama-proyek
+cd e-inventaris
 
 # 3. Install dependencies
 composer install
@@ -78,8 +78,17 @@ php artisan key:generate
 
 # 6. Konfigurasi database di file .env
 
-# 7. Jalankan migrasi dan seeder (jika ada)
+# 7. Jalankan migrasi dan seeder
 php artisan migrate --seed
 
-# 8. Jalankan server lokal
+# 8. Generate Permision
+php artisan shield:generate --all
+
+# 9. Atur Role Super-Admin pada user "Administrator"
+php artisan shield:super-admin
+
+# 10. Jalankan server lokal
 php artisan serve
+
+# 11. Jalankan vite lokal
+npm run dev
